@@ -7,7 +7,9 @@
 start(_Type, _Args) ->
 	Dispatch = cowboy_router:compile([
 				%% {HostMatch, list({PathMatch, Handler, Opts})}
-				{'_', [{"/", hello_handler, []}]}
+				{'_', [ {"/", hello_handler, []}
+                        , {"/static", cowboy_static, {priv_file, hxowboy, "static/index.html"}}
+                      ]}
 			]),
 
 	%% Name, NbAcceptors, TransOpts, ProtoOpts
